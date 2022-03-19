@@ -38,5 +38,6 @@ Can be suppressed by adding this to your `AndroidManifest.xml` inside your main 
 
 [source,xml]
 ----
-<meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
+<meta-data android:name="unityplayer.SkipPermissionsDialog"
+           android:value="true" />
 ----

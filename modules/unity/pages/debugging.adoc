@@ -1,3 +1,6 @@
+:part_decl:
+:source-language: csharp
+
 = Debugging Your Code with Teak
 
 Sometimes things go wrong, Teak does its best to inform the user when things do.
@@ -15,7 +18,7 @@ Unity, as well as a wrapper class to help work with the log messages.
 === Listening for Log Events
 
 Create a handler for log events:
-[source,csharp]
+[source]
 ----
 void HandleLogEvent(Dictionary<string, object> logData) {
     Debug.Log(new TeakLogEvent(logData));
@@ -23,11 +26,9 @@ void HandleLogEvent(Dictionary<string, object> logData) {
 ----
 
 And assign it to `OnLogEvent`:
-[source,csharp]
+[source]
 ----
 Teak.Instance.OnLogEvent += HandleLogEvent;
 ----
 
-=== TeakLogEvent
-
-include::partial$TeakLogEvent.adoc[]
+See xref:unity-api:ROOT:class_teak_log_event.adoc[TeakLogEvent] for more details.

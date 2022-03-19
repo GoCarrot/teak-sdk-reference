@@ -1,20 +1,11 @@
+:part_decl:
+:source-language: csharp
+
 = Badging Your App
 
 You can set the badge count on your app's icon using:
-[source,csharp]
-----
-bool SetBadgeCount(int count)
-----
 
-.Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-|count |The number to assign as a badge to the application's icon
-|===
-
-This function will return `true` if it was able to set the badge count for your
-app's icon, or `false` otherwise.
+include::unity-api:ROOT:Teak_SetBadgeCount_int.adoc[]
 
 On Android, this functionality uses the https://github.com/leolin310148/ShortcutBadger[ShortcutBadger library by Leo Sin].
 

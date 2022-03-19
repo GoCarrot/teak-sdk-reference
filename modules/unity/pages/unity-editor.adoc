@@ -1,3 +1,6 @@
+:part_decl:
+:source-language: csharp
+
 = Unity Editor
 
 == Add Teak
@@ -36,45 +39,10 @@ This stores the Teak App Id and API Key for use by Teak's runtime, and helpers.
 
 Call the `IdentifyUser` function and pass it a string which uniquely identifies the current user:
 
-[source,csharp]
-----
-void IdentifyUser(string userIdentifier, UserConfiguration userConfiguration)
-----
-
-.Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-
-|userIdentifier |Unique identifier for the user (255 characters or fewer).
-
-|userConfiguration |Additional user configuration:
-[cols="1,2a"]
-!===
-!Value !Description
-
-!Email !Email address
-!FacebookId !Facebook id.
-
-Note: If you provide a Facebook id, Teak will send it; regardless of the state of `OptOutFacebook`.
-
-!OptOutFacebook !Opts out of tracking Facebook token. Teak will no longer be able
-to correlate users across multiple devices.
-
-Note: Instead of using `OptOutFacebook` you should enable SDK5 behavior
-(which will disable automatic collection of Facebook user tokens) and not provide
-a `FacebookId` to the user configuration.
-
-!OptOutIdfa !Opts out of collected the Id For Advertising (IDFA). Teak will no
-longer be able to sync this user to Facebook Ad Audiences.
-
-!OptOutPushKey !Opts out of collecting the push key. Teak will no longer be
-able to send Local Notifications or Push Notifications for your game.
-!===
-|===
+include::unity-api:ROOT:Teak_IdentifyUser_string_UserConfiguration.adoc[]
 
 .Example
-[source,csharp]
+[source]
 ----
 // ...
 // As soon as you know the id for the current user.

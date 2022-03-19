@@ -1,3 +1,6 @@
+:part_decl:
+:source-language: csharp
+
 = Working with Teak in Unity
 
 == Requesting Push Notification Permissions
@@ -5,16 +8,18 @@ In order to use push notifications on iOS, you will need to request permissions.
 
 
 .Requesting Push Notification Permissions Using Unity's NotificationServices
-[source,csharp]
+[source]
 ----
-UnityEngine.iOS.NotificationServices.RegisterForNotifications(UnityEngine.iOS.NotificationType.Alert |
-    UnityEngine.iOS.NotificationType.Badge |  UnityEngine.iOS.NotificationType.Sound);
+UnityEngine.iOS.NotificationServices.RegisterForNotifications(
+    UnityEngine.iOS.NotificationType.Alert |
+    UnityEngine.iOS.NotificationType.Badge |
+    UnityEngine.iOS.NotificationType.Sound);
 ----
 
-If you do not wish to use this method, or its Unity Replacement, you can simply call::
+If you do not wish to use this method, or its Unity Replacement, you can use a Teak method to get push permissions with Alert, Badge and Sound.
 
 .Requesting Push Notification Permissions Using Teak
-[source,csharp]
+[source]
 ----
 Teak.Instance.RegisterForNotifications();
 ----
@@ -31,11 +36,14 @@ link Teak will let you know by sending out an event to all listeners.
 You can listen for that event during by first writing a listener function.
 
 .Example Notification Listener Function
-[source,csharp]
+[source]
 ----
 void MyOnLaunchedFromNotificationListener(TeakNotification notification)
 {
-    Debug.Log("OnLaunchedFromNotification: " + notification.CreativeId + " - " + notification.ScheduleId + " Incentivized? " + notification.Incentivized);
+    Debug.Log("OnLaunchedFromNotification: " +
+        notification.CreativeId + " - " +
+        notification.ScheduleId + " Incentivized? " +
+        notification.Incentivized);
 }
 ----
 
@@ -43,7 +51,7 @@ And then adding it to the `Teak.Instance.OnLaunchedFromNotification` event durin
 `Awake()` in any `MonoBehaviour`.
 
 .Adding Example Notification Listener
-[source,csharp]
+[source]
 ----
 void Awake()
 {
@@ -51,9 +59,7 @@ void Awake()
 }
 ----
 
-=== TeakNotification
-
-include::partial$TeakNotification.adoc[]
+See xref:unity-api:ROOT:class_teak_notification.adoc[TeakNotification] for more details.
 
 == Rewards
 
@@ -63,7 +69,7 @@ out an event to all listeners.
 You can listen for that event during by first writing a listener function, for example:
 
 .Example Reward Listener
-[source,csharp]
+[source]
 ----
 void MyRewardListener(TeakReward reward)
 {
@@ -79,7 +85,8 @@ void MyRewardListener(TeakReward reward)
         break;
 
         case TeakReward.RewardStatus.SelfClick: {
-            // The user has attempted to claim a reward from their own social post
+            // The user has attempted to claim a reward
+            // from their own social post
         }
         break;
 
@@ -89,7 +96,8 @@ void MyRewardListener(TeakReward reward)
         break;
 
         case TeakReward.RewardStatus.TooManyClicks: {
-            // The reward has already been claimed its maximum number of times globally
+            // The reward has already been claimed its
+            // maximum number of times globally
         }
         break;
 
@@ -115,7 +123,7 @@ void MyRewardListener(TeakReward reward)
 And then adding it to the `Teak.Instance.OnReward` event during `Awake()` in any `MonoBehaviour`:
 
 .Adding Listener to OnReward Event
-[source,csharp]
+[source]
 ----
 void Awake()
 {
@@ -123,67 +131,25 @@ void Awake()
 }
 ----
 
-=== `TeakReward`
-
-include::partial$TeakReward.adoc[]
+See xref:unity-api:ROOT:class_teak_reward.adoc[TeakReward] for more details.
 
 == Working with Notifications
 You can use Teak to schedule notifications for the future; delivered either to
 the current user, or other users.
 
-NOTE: You get the full benefit of Teak's analytics, A/B testing, and Content Management System.
+NOTE: You get the full benefit of Teak's analytics, A/B testing, and Content Management System when using local notifications!
 
-include::partial$notif-coroutine.adoc[]
-
-=== Callbacks
-All notification related methods are coroutines, which use a callback to communicate
-the results back to the caller.
-
-.TeakNotification.Reply Properties
-[cols="1,2a"]
-|===
-|Property |Description
-|Status |A value that indicates success, or reason for the failure of the call:
-[cols="1,2a"]
-!===
-!`Value` !Description
-
-!`Ok` !The call was successful, and the notification has been scheduled for delivery.
-
-!`UnconfiguredKey` !The call could not be completed because Teak is unable to send a notification to the device due to a configuration setting. This can either be that the user has not granted push permissions on iOS, or that the Teak Dashboard does not have sending credentials suitable for the current device (i.e. Teak has not been provided with an FCM Sender ID/API Key, APNS certificate, or ADM Client ID/Client Secret).
-
-!`InvalidDevice` !The call could not be completed because Teak is not aware of the device scheduling the notification. This can happen if Teak was completely unable to get a push token for the device, which can occur due to intermittent failures in APNS/FCM/ADM, intermittent networking failures between the device and those services, or system modifications made on rooted devices.
-
-!`InternalError` !An unknown error occurred, and the call should be retried.
-!===
-
-|Notifications |If the call was successful, a ``List`` containing the notification schedule ids that were created or canceled by the call.
-|===
+[IMPORTANT]
+====
+All notification related methods are coroutines. Unless you want the
+method to block execution, you must use `StartCoroutine`.
+====
 
 === Scheduling a Local Notification
 To schedule a notification from your game, use:
 
-.Scheduling a Notification
-[source,csharp]
-----
-IEnumerator TeakNotification.ScheduleNotification(string scheduleName, string defaultMessage,
-    long delayInSeconds, System.Action<TeakNotification.Reply> callback)
-----
+include::unity-api:ROOT:TeakNotification_ScheduleNotification_string_string_long_Reply.adoc[]
 
-include::partial$notif-coroutine.adoc[]
-
-.ScheduleNotification Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-|scheduleName |A value used to identify the message creative in the Teak CMS e.g. "daily_bonus"
-
-|defaultMessage |The text to use in the notification if there are no modifications in the Teak CMS.
-
-|delayInSeconds |The number of seconds from the current time before the notification should be sent.
-
-|callback |The callback to be called after the notification is scheduled
-|===
 
 NOTE: The maximum delay for a Local Notification is 30 days.
 
@@ -191,76 +157,27 @@ NOTE: The maximum delay for a Local Notification is 30 days.
 A notification which is scheduled from code, but delivered to a different player
 beside the current player is called a "long distance notification".
 
-.Scheduling a Long Distance Notification
-[source, csharp]
-----
-IEnumerator TeakNotification.ScheduleNotification(string scheduleName, long delayInSeconds,
-    string[] userIds, System.Action<TeakNotification.Reply> callback)
-----
+include::unity-api:ROOT:TeakNotification_ScheduleNotification_string_long_string()_Reply.adoc[]
 
-include::partial$notif-coroutine.adoc[]
-
-.ScheduleNotification Parameter
-[cols="1,2a"]
-|===
-|Parameter |Description
-|scheduleName |A value used to identify the message creative in the Teak CMS e.g. "daily_bonus"
-
-|delayInSeconds |The number of seconds from the current time before the notification should be sent.
-
-|userIds |An array of user ids to which the notification should be delivered
-
-|callback |The callback to be called after the notifications are scheduled
-|===
 
 NOTE: The maximum delay for a Long-Distance Notification is 30 days.
 
 === Canceling a Notification
 To cancel a previously scheduled notification, use:
 
-[source,csharp]
-----
-IEnumerator TeakNotification.CancelScheduledNotification(string scheduledId,
-    System.Action<TeakNotification.Reply> callback)
-----
-
-include::partial$notif-coroutine.adoc[]
-
-.CancelScheduledNotification Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-|scheduleId |Passing the id received from `ScheduleNotification()` will cancel
-that specific notification; passing the `scheduleName` used to schedule the
-notification will cancel *all* scheduled notifications with that creative id for the user
-
-|callback |The callback to be called after the notification is canceled
-|===
+include::unity-api:ROOT:TeakNotification_CancelScheduledNotification_string_Reply.adoc[]
 
 === Canceling all Local Notifications
 
 To cancel all previously scheduled local notifications, use:
 
-[source, csharp]
-----
-IEnumerator TeakNotification.CancelAllScheduledNotifications(
-    System.Action<TeakNotification.Reply> callback)
-----
-
-.CancelAllScheduledNotifications Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-|callback |The callback to be called after the notifications are canceled
-|===
+include::unity-api:ROOT:TeakNotification_CancelAllScheduledNotifications_Reply.adoc[]
 
 NOTE: This call is processed asynchronously. If you immediately call
 `TeakNotification.ScheduleNotification()` after calling
 `TeakNotification.CancelAllScheduledNotifications()` it is possible for your
 newly scheduled notification to also be canceled. We recommend waiting until the
 callback has fired before scheduling any new notifications.
-
-include::partial$notif-coroutine.adoc[]
 
 == Determining if User Has Disabled Push Notifications
 You can use Teak to get the state of push notifications for your app.
@@ -271,7 +188,7 @@ settings page for the app, and use Teak to go directly the settings for your app
 === Notification State
 
 To get the state of push notifications, use:
-[source, csharp]
+[source]
 ----
 NotificationState PushNotificationState
 ----
@@ -292,7 +209,7 @@ NotificationState PushNotificationState
 |===
 
 .Example
-[source,csharp]
+[source]
 ----
 if (Teak.Instance.PushNotificationState == Teak.NotificationState.Disabled) {
     // Show a button that will let users open the settings
@@ -303,15 +220,10 @@ if (Teak.Instance.PushNotificationState == Teak.NotificationState.Disabled) {
 
 If you want to show the settings for your app, use:
 
-[source,csharp]
-----
-    bool OpenSettingsAppToThisAppsSettings()
-----
-
-This function will return `false` if Teak was not able to open the settings, `true` otherwise.
+include::unity-api:ROOT:Teak_OpenSettingsAppToThisAppsSettings.adoc[]
 
 .Example
-[source,csharp]
+[source]
 ----
 // ...
 // When a user presses a button indicating they want to change their notification settings
@@ -322,7 +234,7 @@ Teak.Instance.OpenSettingsAppToThisAppsSettings()
 
 Each time your game launches, Teak will pass all of the information it has on the launch to you via the ``OnPostLaunchSummary`` event.
 
-include::partial$PostLaunchSummary.adoc[]
+See xref:unity-api:ROOT:class_teak_post_launch_summary.adoc[TeakPostLaunchSummary] for more details.
 
 == Player Properties
 
@@ -336,13 +248,10 @@ before using them in targeting.
 === Numeric Property
 To set a numeric property, use::
 
-[source, csharp]
-----
-void SetNumericAttribute(string key, double value)
-----
+include::unity-api:ROOT:Teak_SetNumericAttribute_string_double.adoc[]
 
 .Example
-[source, csharp]
+[source]
 ----
 Teak.Instance.SetNumericAttribute("coins", new_coin_balance);
 ----
@@ -350,13 +259,11 @@ Teak.Instance.SetNumericAttribute("coins", new_coin_balance);
 === String Property
 
 To set a string property, use:
-[source, csharp]
-----
-void SetStringAttribute(string key, string value)
-----
+
+include::unity-api:ROOT:Teak_SetStringAttribute_string_string.adoc[]
 
 .Example
-[source, csharp]
+[source]
 ----
 Teak.Instance.SetStringAttribute("last_slot", "amazing_slot_name");
 ----
@@ -376,13 +283,11 @@ you must also provide an object type, for example ['FishCaught', null, '13'] is 
 === Tracking an Event
 
 To track that an event occurred, use:
-[source, csharp]
-----
-void TrackEvent(string actionId, string objectTypeId, string objectInstanceId)
-----
+
+include::unity-api:ROOT:Teak_TrackEvent_string_string_string.adoc[]
 
 .Example
-[source, csharp]
+[source]
 ----
 Teak.Instance.TrackEvent("LevelUp", "Fishing", "13");
 ----
@@ -392,13 +297,11 @@ Teak.Instance.TrackEvent("LevelUp", "Fishing", "13");
 Incremented events are used for analytics which grow over time. You cannot provide negative values.
 
 To increment an event, use:
-[source, csharp]
-----
-void IncrementEvent(string actionId, string objectTypeId, string objectInstanceId, ulong count)
-----
+
+include::unity-api:ROOT:Teak_IncrementEvent_string_string_string_long.adoc[]
 
 .Examples
-[source, csharp]
+[source]
 ----
 Teak.Instance.IncrementEvent("coin_sink", "slot", "Happy Land Slots", 25000);
 Teak.Instance.IncrementEvent("spin", "slot", "Happy Land Slots", 1);
@@ -412,13 +315,11 @@ Deep Linking with Teak is based on routes, which act like URLs. These routes
 allow you to specify variables
 
 You can add routes using:
-[source, csharp]
-----
-void RegisterRoute(string route, string name, string description, Action<Dictionary<string, object>> action)
-----
+
+include::unity-api:ROOT:Teak_RegisterRoute_string_string_string_Action(Dictionary(string_object)).adoc[]
 
 .Example
-[source, csharp]
+[source]
 ----
 void Awake()
 {
@@ -428,20 +329,6 @@ void Awake()
     });
 }
 ----
-
-.RegisterRoute Parameters
-[cols="1,2a"]
-|===
-|Parameter |Description
-
-|route |The route definition to register
-
-|name |The name of the route, this will be used in the Teak Dashboard
-
-|description |The description of the route, this will be used in the Teak Dashboard
-
-|action |The method to execute when the app is opened via a deep link to this route
-|===
 
 IMPORTANT: You need to register your deep link routes before you call `IdentifyUser`.
 
@@ -489,13 +376,11 @@ will not process deep links or rewards until a user is logged in, via `IdentifyU
 == Reporting Facebook Payments Purchases
 
 If you need to report purchases on Facebook Canvas from using any of the `FB.Canvas.Pay` methods, use:
-[source,csharp]
-----
-void ReportCanvasPurchase(string rawResult)
-----
+
+include::unity-api:ROOT:Teak_ReportCanvasPurchase_string.adoc[]
 
 .Example
-[source,csharp]
+[source]
 ----
 FB.Canvas.PayWithProductId(
     this.testPurchaseSku,
@@ -511,13 +396,6 @@ FB.Canvas.PayWithProductId(
     }
 );
 ----
-
-[cols="1,2a"]
-|===
-|Parameter |Description
-
-|rawResult |The value of ``IPayResult.RawResult``
-|===
 
 Preprocessor Defines
 --------------------
