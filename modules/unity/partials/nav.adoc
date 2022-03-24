@@ -12,3 +12,4 @@
 * xref:sdk-reference:unity:page$custom-versions.adoc[Custom Version Numbers]
 * xref:sdk-reference:unity:page$data-collection.adoc[Limiting Data Collection]
 * xref:sdk-reference:unity:page$upm.adoc[Unity Package Manager]
+* xref:unity-api:changelog:page$changelog.adoc[Changelog]
