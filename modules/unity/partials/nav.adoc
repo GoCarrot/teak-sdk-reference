@@ -1,4 +1,4 @@
-* xref:sdk-reference:unity:page$before-you-start.adoc[Getting Started]
+* xref:sdk-reference:unity:page$before-you-start.adoc[Before You Start]
 * xref:sdk-reference:unity:page$unity-editor.adoc[Unity Editor]
 * xref:sdk-reference:unity:page$android.adoc[Android]
 ** xref:sdk-reference:unity:page$android-permissions.adoc[Android Permissions]

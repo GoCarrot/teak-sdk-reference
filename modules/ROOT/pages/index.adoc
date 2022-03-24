@@ -3,7 +3,7 @@
 A landing page for the SDK reference Docs
 
 == Choose Language
-* xref:sdk-reference:unity:page$index.adoc[Unity]
+* xref:sdk-reference:unity:page$before-you-start.adoc[Unity]
 * xref:ios-api::page$index.adoc[iOS]
 * xref:android-api::page$index.adoc[Android]
 * JavaScript (do we need JS reference?)
