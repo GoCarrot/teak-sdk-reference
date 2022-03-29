@@ -1,3 +1,4 @@
+:experimental:
 :part_decl:
 :source-language: csharp
 
@@ -10,9 +11,7 @@ Or...
 
 Download the latest *Teak.unitypackage* from https://sdks.teakcdn.com/unity/Teak.unitypackage
 
-Import it into your project in Unity by going to the menu
-
-    Assets > Import Package > Custom Package
+Import it into your project in Unity using menu:Assets[Import Package > Custom Package]
 
 Then select *Teak.unitypackage*
 
@@ -22,15 +21,11 @@ with Teak, the native libraries required for Teak functionality, and the other
 files that Teak needs to function.
 
 == Configure Teak
-Go to the Edit menu in Unity and select Teak
+Open the Teak configuration in the Unity Inspector using menu:Edit[Teak]
 
-    Edit > Teak
-
-This will open the Teak configuration in the Unity Inspector, put in your Teak App Id and Teak API Key.
+Put in your Teak App Id and Teak API Key. Your Teak App Id and API Key can be found in the Settings for your app on the Teak dashboard.
 
 NOTE: Make sure the Inspector tab is visible in your Unity window.
-
-Your Teak App Id and API Key can be found in the Settings for your app on the Teak dashboard.
 
 === What This Does
 This stores the Teak App Id and API Key for use by Teak's runtime, and helpers.
