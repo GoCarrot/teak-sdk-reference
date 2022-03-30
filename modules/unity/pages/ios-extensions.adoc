@@ -42,7 +42,7 @@ image::service-extension-group.png[]
 * `UserNotifications.framework`
 * `libTeak.a`
 
-image::service-extension-link.png
+image::service-extension-link.png[]
 
 NOTE: You can find `libTeak.a` in `Libraries/Teak/Plugins/iOS` in the Xcode project
 structure, and drag it into the 'Link Binary with Libraries' step.
