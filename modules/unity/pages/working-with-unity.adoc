@@ -59,7 +59,7 @@ void Awake()
 }
 ----
 
-See xref:unity-api:ROOT:class_teak_notification.adoc[TeakNotification] for more details.
+See [[TeakNotification]] for more details.
 
 == Rewards
 
@@ -131,7 +131,7 @@ void Awake()
 }
 ----
 
-See xref:unity-api:ROOT:class_teak_reward.adoc[TeakReward] for more details.
+See [[TeakReward]] for more details.
 
 == Working with Notifications
 You can use Teak to schedule notifications for the future; delivered either to
@@ -234,7 +234,7 @@ Teak.Instance.OpenSettingsAppToThisAppsSettings()
 
 Each time your game launches, Teak will pass all of the information it has on the launch to you via the ``OnPostLaunchSummary`` event.
 
-See xref:unity-api:ROOT:class_teak_post_launch_summary.adoc[TeakPostLaunchSummary] for more details.
+See [[TeakPostLaunchSummary]] for more details.
 
 == Player Properties
 

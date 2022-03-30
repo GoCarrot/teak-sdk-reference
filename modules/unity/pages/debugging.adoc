@@ -31,4 +31,4 @@ And assign it to `OnLogEvent`:
 Teak.Instance.OnLogEvent += HandleLogEvent;
 ----
 
-See xref:unity-api:ROOT:class_teak_log_event.adoc[TeakLogEvent] for more details.
+See [[TeakLogEvent]] for more details.

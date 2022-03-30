@@ -1,3 +1,5 @@
+:experimental:
+
 = iOS Notification Extensions
 
 Do you want Playable Notifications? Buttons in your notifications? Well rest easy... Teak's post-processing scripts will take care of all of this for you, automatically!
@@ -17,7 +19,7 @@ NOTE: This document assumes that you have a working Xcode project for a game wit
 
 === Notification Service Extension
 
-Go to: *File* > *New* > *Target* and choose `Notification Service Extension`
+Go to: menu:File[New > Target] and choose `Notification Service Extension`
 
 Name it `TeakNotificationService`
 
@@ -85,7 +87,7 @@ Change the code in `TeakNotificationService/NotificationService.m` to look like 
 
 === Notification Content Extension
 
-Go to: *File* > *New* > *Target* and choose `Notification Content Extension`
+Go to: menu:File[New > Target] and choose `Notification Content Extension`
 
 Name it `TeakNotificationContent`
 
