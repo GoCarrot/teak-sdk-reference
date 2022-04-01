@@ -9,11 +9,11 @@ All Teak events will be delayed until ``identifyUser`` is called.
 
 IMPORTANT: This should be the same way that you identify the user in your system, so that when you export data from Teak, it will be easy for you to associate with your own data.
 
-* ``[[identifyUser:]]``
-* ``[[identifyUser:withEmail:]]``
-* ``[[identifyUser:withOptOutList:]]``
-* ``[[identifyUser:withOptOutList:andEmail:]]``
-* ``[[identifyUser:withConfiguration:]]``
+* ``<<identifyUser:>>``
+* ``<<identifyUser:withEmail:>>``
+* ``<<identifyUser:withOptOutList:>>``
+* ``<<identifyUser:withOptOutList:andEmail:>>``
+* ``<<identifyUser:withConfiguration:>>``
 
 .Example
 [source,objc]
@@ -25,7 +25,7 @@ IMPORTANT: This should be the same way that you identify the user in your system
 
 Teak allows you to add a limited number of attributes to users. A maximum of 16 string and 16 numeric attributes can be used.
 
-You can set a numeric attribute using ``[[setNumericAttribute:forKey:]]``.
+You can set a numeric attribute using ``<<setNumericAttribute:forKey:>>``.
 
 .Setting a numeric attribute from C
 [source,c]
@@ -33,7 +33,7 @@ You can set a numeric attribute using ``[[setNumericAttribute:forKey:]]``.
 void TeakSetNumericAttribute(const char* cstr_key, double value)
 ----
 
-You can set a string attribute using ``[[setStringAttribute:forKey:]]``.
+You can set a string attribute using ``<<setStringAttribute:forKey:>>``.
 
 .Setting a string attribute from C
 [source,c]
@@ -55,7 +55,7 @@ void TeakSetStringAttribute(const char* cstr_key, const char* cstr_value)
 
 === Scheduling a Notification
 
-You can schedule a notification to be delivered for the current player by using ``[[scheduleNotificationForCreative:withMessage:secondsFromNow:]]``
+You can schedule a notification to be delivered for the current player by using ``<<scheduleNotificationForCreative:withMessage:secondsFromNow:>>``
 
 .Scheduling a notification from C
 [source,c]
@@ -65,7 +65,7 @@ TeakNotification* TeakNotificationSchedule(const char* creativeId,
                                            int64_t delay)
 ----
 
-You can schedule a notification do be delivered to other players--a long-distance notification--by using ``[[scheduleNotificationForCreative:secondsFromNow:forUserIds:]]``.
+You can schedule a notification do be delivered to other players--a long-distance notification--by using ``<<scheduleNotificationForCreative:secondsFromNow:forUserIds:>>``.
 
 .Scheduling a long-distance notification from C
 [source,c]
@@ -87,7 +87,7 @@ TeakNotification* TeakNotificationScheduleLongDistanceWithNSArray(const char* cr
 
 === Canceling a Scheduled Notification
 
-To cancel a notification that you've scheduled from the client use ``[[cancelScheduledNotification:]]``.
+To cancel a notification that you've scheduled from the client use ``<<cancelScheduledNotification:>>``.
 
 .Canceling a scheduled notification from C
 [source,c]
@@ -97,7 +97,7 @@ TeakNotification* TeakNotificationCancel(const char* scheduleId)
 
 === Cancel All Client-Scheduled Notifications
 
-Using ``[[cancelAll]]`` will cancel all of the notifications which were scheduled from client-side code.
+Using ``<<cancelAll>>`` will cancel all of the notifications which were scheduled from client-side code.
 
 .Canceling all scheduled notifications from C
 [source,c]

@@ -109,7 +109,7 @@ import io.teak.sdk.wrapper.unity;
 ----
 
 ==== Initialize Teak
-Call ``[[Teak.onCreate(Activity)]]`` **before** the call to ``super.onCreate``, then call
+Call ``<<Teak.onCreate(Activity)>>`` **before** the call to ``super.onCreate``, then call
 ``TeakUnity.initialize()`` **after** the call to ``super.onCreate``
 
 .Call Teak.onCreate()

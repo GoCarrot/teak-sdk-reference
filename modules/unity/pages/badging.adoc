@@ -5,7 +5,7 @@
 
 You can set the badge count on your app's icon using:
 
-include::unity-api:ROOT:Teak_SetBadgeCount_int.adoc[]
+doxygen2adoc:SetBadgeCount(int)[]
 
 On Android, this functionality uses the https://github.com/leolin310148/ShortcutBadger[ShortcutBadger library by Leo Sin].
 

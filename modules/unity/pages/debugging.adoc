@@ -25,10 +25,10 @@ void HandleLogEvent(Dictionary<string, object> logData) {
 }
 ----
 
-And assign it to ``[[OnLogEvent]]``:
+And assign it to ``<<OnLogEvent>>``:
 [source]
 ----
 Teak.Instance.OnLogEvent += HandleLogEvent;
 ----
 
-See [[TeakLogEvent]] for more details.
+See <<TeakLogEvent>> for more details.

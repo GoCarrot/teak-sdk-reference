@@ -59,7 +59,7 @@ void Awake()
 }
 ----
 
-See [[TeakNotification]] for more details.
+See <<TeakNotification>> for more details.
 
 == Rewards
 
@@ -131,7 +131,7 @@ void Awake()
 }
 ----
 
-See [[TeakReward]] for more details.
+See <<TeakReward>> for more details.
 
 == Working with Notifications
 You can use Teak to schedule notifications for the future; delivered either to
@@ -148,8 +148,7 @@ method to block execution, you must use `StartCoroutine`.
 === Scheduling a Local Notification
 To schedule a notification from your game, use:
 
-include::unity-api:ROOT:TeakNotification_ScheduleNotification_string_string_long_Reply.adoc[]
-
+doxygen2adoc:ScheduleNotification(string,string,long,Reply)[]
 
 NOTE: The maximum delay for a Local Notification is 30 days.
 
@@ -157,21 +156,20 @@ NOTE: The maximum delay for a Local Notification is 30 days.
 A notification which is scheduled from code, but delivered to a different player
 beside the current player is called a "long distance notification".
 
-include::unity-api:ROOT:TeakNotification_ScheduleNotification_string_long_string()_Reply.adoc[]
-
+doxygen2adoc:ScheduleNotification(string,long,string[],Reply)[]
 
 NOTE: The maximum delay for a Long-Distance Notification is 30 days.
 
 === Canceling a Notification
 To cancel a previously scheduled notification, use:
 
-include::unity-api:ROOT:TeakNotification_CancelScheduledNotification_string_Reply.adoc[]
+doxygen2adoc:CancelScheduledNotification(string,Reply)[]
 
 === Canceling all Local Notifications
 
 To cancel all previously scheduled local notifications, use:
 
-include::unity-api:ROOT:TeakNotification_CancelAllScheduledNotifications_Reply.adoc[]
+doxygen2adoc:CancelAllScheduledNotifications(Reply)[]
 
 NOTE: This call is processed asynchronously. If you immediately call
 `TeakNotification.ScheduleNotification()` after calling
@@ -220,7 +218,7 @@ if (Teak.Instance.PushNotificationState == Teak.NotificationState.Disabled) {
 
 If you want to show the settings for your app, use:
 
-include::unity-api:ROOT:Teak_OpenSettingsAppToThisAppsSettings.adoc[]
+doxygen2adoc:OpenSettingsAppToThisAppsSettings()[]
 
 .Example
 [source]
@@ -234,7 +232,7 @@ Teak.Instance.OpenSettingsAppToThisAppsSettings()
 
 Each time your game launches, Teak will pass all of the information it has on the launch to you via the ``OnPostLaunchSummary`` event.
 
-See [[TeakPostLaunchSummary]] for more details.
+See <<TeakPostLaunchSummary>> for more details.
 
 == Player Properties
 
@@ -248,7 +246,7 @@ before using them in targeting.
 === Numeric Property
 To set a numeric property, use::
 
-include::unity-api:ROOT:Teak_SetNumericAttribute_string_double.adoc[]
+doxygen2adoc:SetNumericAttribute(string,double)[]
 
 .Example
 [source]
@@ -260,7 +258,7 @@ Teak.Instance.SetNumericAttribute("coins", new_coin_balance);
 
 To set a string property, use:
 
-include::unity-api:ROOT:Teak_SetStringAttribute_string_string.adoc[]
+doxygen2adoc:SetNumericAttribute(string,string)[]
 
 .Example
 [source]
@@ -284,7 +282,7 @@ you must also provide an object type, for example ['FishCaught', null, '13'] is 
 
 To track that an event occurred, use:
 
-include::unity-api:ROOT:Teak_TrackEvent_string_string_string.adoc[]
+doxygen2adoc:TrackEvent(string,string,string)[]
 
 .Example
 [source]
@@ -298,7 +296,7 @@ Incremented events are used for analytics which grow over time. You cannot provi
 
 To increment an event, use:
 
-include::unity-api:ROOT:Teak_IncrementEvent_string_string_string_long.adoc[]
+doxygen2adoc:IncrementEvent(string,string,string,long)[]
 
 .Examples
 [source]
@@ -316,7 +314,7 @@ allow you to specify variables
 
 You can add routes using:
 
-include::unity-api:ROOT:Teak_RegisterRoute_string_string_string_Action(Dictionary(string_object)).adoc[]
+doxygen2adoc:IncrementEvent(string,string,string,long)[]
 
 .Example
 [source]
@@ -377,7 +375,7 @@ will not process deep links or rewards until a user is logged in, via `IdentifyU
 
 If you need to report purchases on Facebook Canvas from using any of the `FB.Canvas.Pay` methods, use:
 
-include::unity-api:ROOT:Teak_ReportCanvasPurchase_string.adoc[]
+doxygen2adoc:ReportCanvasPurchase(string)[]
 
 .Example
 [source]

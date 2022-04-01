@@ -1,4 +1,5 @@
 = Integration
+
 The latest version of the Teak iOS is always available at:
 
 * http://sdks.teakcdn.com/ios/Teak.framework.zip
@@ -64,7 +65,7 @@ Your Teak Subdomain can be found in the Settings for your app on the Teak dashbo
 
 == Initialize Teak
 
-Initialize Teak in your ``main.m`` file using ``[[initForApplicationId:withClass:andApiKey:]]``
+Initialize Teak in your ``main.m`` file using ``<<initForApplicationId:withClass:andApiKey:>>``
 
 .Initializing Teak
 [source,objc]
@@ -76,19 +77,23 @@ Initialize Teak in your ``main.m`` file using ``[[initForApplicationId:withClass
 int main(int argc, char* argv[]) {
   @autoreleasepool {
     // Step 2:
-    // Initialize Teak inside the @autoreleasepool but before UIApplicationMain() is called.
-    [Teak initForApplicationId:@"YOUR_TEAK_APP_ID"    // Use your Teak Application Id here.
-                     withClass:[AppDelegate class]    // Use the name of your main UIApplicationDelegate here.
-                     andApiKey:@"YOUR_TEAK_API_KEY"]; // Use your Teak API Key here.
+    // Initialize Teak inside the @autoreleasepool but before
+    // UIApplicationMain() is called.
+    [Teak initForApplicationId:@"YOUR_TEAK_APP_ID"
+                     withClass:[AppDelegate class]
+                     andApiKey:@"YOUR_TEAK_API_KEY"];
 
     // Continue to our AppDelegate.m file for the next steps.
 
-    return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    return UIApplicationMain(argc, argv, nil,
+                             NSStringFromClass([AppDelegate class]));
   }
 }
 ----
 
 IMPORTANT: You must initialize Teak inside the ``@autoreleasepool`` but before UIApplicationMain() is called.
+
+NOTE: Replace `YOUR_TEAK_APP_ID` and `YOUR_TEAK_API_KEY` with the values for your game.
 
 Teak also exposes this functionality via a C API:
 
@@ -103,7 +108,7 @@ extern void Teak_Plant(Class appDelegateClass,
 
 As soon as your game knows how it will identify the current user in your own backend, you should tell Teak that identifyer.
 
-Teak will wait until ``[identifyUser:]`` is called before it will send ``NSNotificationCenter`` notifications to inform you about events (covered later).
+Teak will wait until xref:working-with-teak.adoc#_identify_user[a user is identified] before it will send ``NSNotificationCenter`` notifications to inform you about events (covered later).
 
 .Remaining Integration
 [source,objc]
@@ -122,14 +127,14 @@ Teak will wait until ``[identifyUser:]`` is called before it will send ``NSNotif
   // prefixed with ':', so ':sku' will create a key named 'sku' in the
   // dictionary passed to the block.
   //
-  // Name and Description are optional, but will show up in the Teak Dashboard
-  // to help identify the deep link
+  // Name and Description are optional, but will show up in the
+  // Teak Dashboard to help identify the deep link
   [TeakLink registerRoute:@"/store/:sku"
                      name:@"Store SKU"
-              description:@"Will open the In App Purchase for the specified SKU"
-                    block:^(NSDictionary* _Nonnull parameters) {
-                      NSLog(@"%@", parameters);
-                      NSLog(@"IT CALLED THE THING!! SKU: %@", parameters[@"sku"]);
+              description:@"Opens IAP screen for the specified SKU"
+                    block:^(NSDictionary* _Nonnull params) {
+                      NSLog(@"%@", params);
+                      NSLog(@"SKU: %@", params[@"sku"]);
                     }];
 
   // Step 4:
@@ -148,10 +153,11 @@ Teak will wait until ``[identifyUser:]`` is called before it will send ``NSNotif
   // has been launched via a Push Notification.
   //
   // See the bottom of this file for an example of a handler function.
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleTeakNotification:)
-                                               name:TeakNotificationAppLaunch
-                                             object:nil];
+  [[NSNotificationCenter defaultCenter]
+        addObserver:self
+           selector:@selector(handleTeakNotification:)
+               name:TeakNotificationAppLaunch
+            object:nil];
 
   return YES;
 }
