@@ -1,7 +1,3 @@
-:experimental:
-:part_decl:
-:source-language: csharp
-
 = Unity Editor
 
 == Add Teak

@@ -1,6 +1,3 @@
-:part_decl:
-:source-language: csharp
-
 = Debugging Your Code with Teak
 
 Sometimes things go wrong, Teak does its best to inform the user when things do.

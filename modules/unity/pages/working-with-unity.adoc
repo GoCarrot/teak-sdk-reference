@@ -1,6 +1,3 @@
-:part_decl:
-:source-language: csharp
-
 = Working with Teak in Unity
 
 == Requesting Push Notification Permissions
@@ -314,7 +311,7 @@ allow you to specify variables
 
 You can add routes using:
 
-doxygen2adoc:IncrementEvent(string,string,string,long)[]
+doxygen2adoc:RegisterRoute(string,string,string,Action<Dictionary<string, object>>)[]
 
 .Example
 [source]

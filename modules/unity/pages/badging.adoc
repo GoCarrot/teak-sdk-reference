@@ -1,6 +1,3 @@
-:part_decl:
-:source-language: csharp
-
 = Badging Your App
 
 You can set the badge count on your app's icon using:
