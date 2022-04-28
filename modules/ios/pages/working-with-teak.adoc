@@ -7,19 +7,15 @@ This tells Teak how the user should be referenced in the Teak system.
 
 All Teak events will be delayed until ``identifyUser`` is called.
 
-IMPORTANT: This should be the same way that you identify the user in your system, so that when you export data from Teak, it will be easy for you to associate with your own data.
-
-* ``<<identifyUser:>>``
-* ``<<identifyUser:withEmail:>>``
-* ``<<identifyUser:withOptOutList:>>``
-* ``<<identifyUser:withOptOutList:andEmail:>>``
-* ``<<identifyUser:withConfiguration:>>``
+doxygen2adoc:identifyUser:withConfiguration:[]
 
 .Example
 [source,objc]
 ----
 [[Teak sharedInstance] identifyUser:@"someuserid"];
 ----
+
+IMPORTANT: This should be the same way that you identify the user in your system, so that when you export data from Teak, it will be easy for you to associate with your own data.
 
 == User Attributes
 
@@ -104,4 +100,3 @@ Using ``<<cancelAll>>`` will cancel all of the notifications which were schedule
 ----
 TeakNotification* TeakNotificationCancelAll()
 ----
-
