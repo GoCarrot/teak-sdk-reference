@@ -6,6 +6,7 @@ HTML-lite tags are available in Android notification text.
 
 The following tags are supported:
 
+[horizontal]
 ``<b>``:: bold
 
 ``<i>``:: italic
