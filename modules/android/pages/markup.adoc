@@ -19,7 +19,7 @@ The following tags are supported:
 
 ``<font color="...">``:: change text color
 
-== Supported Colors:
+== Supported Colors
 
 .These are how the colors look on a Google Pixel
 image::android-html-colors.png[Colors,324,576,role=right]
