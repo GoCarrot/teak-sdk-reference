@@ -6,3 +6,4 @@ nav:
 - modules/unity/nav.adoc
 - modules/ios/nav.adoc
 - modules/android/nav.adoc
+- modules/server/nav.adoc
