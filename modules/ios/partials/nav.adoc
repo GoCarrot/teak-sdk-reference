@@ -1,6 +1,0 @@
-* xref:sdk-reference:ios:page$integration.adoc[Integration]
-* xref:sdk-reference:ios:page$working-with-teak.adoc[Working With Teak]
-* xref:sdk-reference:ios:page$keychain-access-email.adoc[Potential Loss of Keychain Access]
-* xref:sdk-reference:ios:page$version-string-mismatch-email.adoc[CFBundle(Short)VersionString Mismatch]
-* xref:sdk-reference:ios:page$third-party.adoc[Third-Party Code]
-* xref:ios-api:changelog:page$changelog.adoc[Changelog]
