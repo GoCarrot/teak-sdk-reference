@@ -1,6 +1,5 @@
-name: sdk-reference
-title: Teak SDK
+name: server
+title: Server API
 version: ~
 nav:
-- modules/ROOT/nav.adoc
 - modules/server/nav.adoc
